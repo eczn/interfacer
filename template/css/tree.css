@@ -1,13 +1,49 @@
 /*tree.css*/
-
 .file-tree {
 	position: relative;
 	margin-left: 1.8em; 
 }
 
 .file-tree .header {
-	font-size: 200%; 
-
+	color: rgb(68, 68, 68);
+	display: block;
+	font-size: 0.35rem; 
+	text-decoration: none; 
+	margin: .2em 0; 
+	transition: all .2s; 
 }
 
+.file-tree .header:hover {
+	opacity: .7; 
+}
 
+body[side-open="√"] {
+	padding-left: 320px; 
+}
+
+.file-container {
+	position: fixed;
+	left: -320px; 
+	top: 0; 
+	height: 100%; 
+	width: 320px; 
+	background-color: #DDD;
+	transition: all .3s;  
+}
+
+.show-file-tree {
+	position: absolute;
+	bottom: 0; 
+	left: 0px;
+	width: 40px; 
+	height: 40px;  
+	transition: all .3s; 
+}
+
+.show-file-tree:checked ~ .file-container {
+	left: 0px; 
+}
+
+.show-file-tree:checked {
+	left: 320px; 	
+}

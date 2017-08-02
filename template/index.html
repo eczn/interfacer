@@ -12,10 +12,11 @@
 	<link rel="stylesheet" href="/css/tree.css">
 </head>
 <body>
+	<input type="checkbox" class="show-file-tree" />
 	<div class="file-container">
-		<a href="/" class="root">/</a>
 		<ul class="file-tree file-tree-root">
-			
+			<a href="/" class="header root">/</a>
+			{{ htmlList }}
 		</ul>
 	</div>
 
@@ -31,10 +32,7 @@
 			{{ md }}
 		</div>
 	</div>
-	<script>
-		var rootStr = `{{ tree }}`; 
-		var root = JSON.parse(rootStr); 
-	</script>
+
 	<script src="/js/main.js"></script>
 </body>
 </html>
