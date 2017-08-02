@@ -1,0 +1,41 @@
+{
+  "name": "interfacer",
+  "version": "0.0.1",
+  "description": "API Document Automately Generating 接口文档自动生成工具.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eczn/interfacer.git"
+  },
+  "keywords": [
+    "API",
+    "Document"
+  ],
+  "author": "eczn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eczn/interfacer/issues"
+  },
+  "homepage": "https://github.com/eczn/interfacer#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "highlight.js": "^9.12.0",
+    "markdown-it": "^8.3.1",
+    "markdown-it-implicit-figures": "^0.6.0",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "markdown-it-table-of-contents": "^0.3.2",
+    "markdown-it-toc-and-anchor": "^4.1.2",
+    "require-folder-tree": "^1.4.5",
+    "shelljs": "^0.7.8",
+    "tplser": "0.0.81"
+  }
+}
