@@ -5,11 +5,15 @@ var md = require('./md');
 var renders = require('./tpl'); 
 var tree = require('./fileTree'); 
 
-var outputTree = tree(config.output); 
 
-var outputTreeInJSON = JSON.stringify(
-	outputTree
-).replace(/\\\\/g, '/'); 
+var outputTree = tree.init(config.output); 
+
+// 删掉多余的。 
+delete outputTree.css; 
+delete outputTree.js; 
+delete outputTree.images; 
+
+var htmlList = tree.toList(outputTree); 
 
 var goThroughDisk = root => {
 	var list = fs.readdirSync(root);
@@ -22,16 +26,10 @@ var goThroughDisk = root => {
 		); 
 
 		if (fileStat.isDirectory()){
-			// 这是目录 
 			return acc.concat(
 				goThroughDisk(fileLocation)
 			)
 		} else {
-			// 单纯的文件 
-			// console.log(
-			// 	list.filter(e => e !== file), 
-			// 	'and index file:', fileLocation
-			// ); 
 			nodeProcess({
 				list: list.filter(e => e !== file), 
 				index: fileLocation
@@ -43,29 +41,27 @@ var goThroughDisk = root => {
 }
 
 function nodeProcess(node){
+	// 不渲染非 .md 后缀的文件 
 	if (!/.md$/.test(node.index)) return 
 
+	// Markdown渲染 
 	var mdHTML = md.render(
 		fs.readFileSync(node.index).toString()
 	); 
+	
+	// 文件所在目录的名字 
+	var name = node.index.split(path.sep).slice(-2, -1); 
 
-	// var name = node.index.replace(/\.\/index\.md/g, '').slice(
-	// 	node.index.replace(/\.\/index\.md/g, '').lastIndexOf('/')
-	// )
-
-	var temp = node.index.split(path.sep); 
-
-	temp = temp.slice(-2, -1); 
-
-
+	// 模版渲染
 	var indexHTML = renders.index({
-		name: temp, 
+		name: name, 
 		list: node.list, 
 		md: mdHTML, 
-		tree: outputTreeInJSON
+		htmlList: htmlList
 	}); 
 
-	var htmlLocation = node.index.replace(/.md$/, '.html'); 
+	// 把文件名改成 .html 后缀 并写入到与 .md 文件一样的目录中
+	var htmlLocation = node.index.replace(/\.md$/, '.html'); 
 	fs.writeFileSync(htmlLocation, indexHTML); 
 }
 

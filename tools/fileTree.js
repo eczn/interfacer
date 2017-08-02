@@ -3,14 +3,14 @@ var fs = require('fs');
 var path = require('path'); 
 // var config = require('../config'); 
 
-function tree(root){
+function treeInit(root){
 	var rootStat = fs.statSync(root); 
 
 	if (rootStat.isDirectory()){
 		var list = fs.readdirSync(root);
 
 		return list.reduce((acc, cur) => {
-			acc[cur] = tree(
+			acc[cur] = treeInit(
 				path.join(root, cur)
 			); 
 			return acc; 
@@ -20,6 +20,26 @@ function tree(root){
 	}
 }
 
-// var r = tree(config.output); 
+function tree2list(root, pathAcc){
+	var list = Object.keys(root); 
 
-module.exports = tree; 
+	return list.map(sub => {
+
+		if (typeof root[sub] === 'object') {
+			var nextPath = pathAcc + sub + '/'; 
+			return `
+				<ul class="file-tree" where="${sub}">
+					<a class="header" href="${ nextPath }">${ nextPath }</a>
+					${tree2list(root[sub], nextPath)}
+				</ul>
+			`; 
+		} else {
+			return ''; 
+		}
+	}).join(''); 
+}
+
+module.exports = {
+	init: treeInit, 
+	toList: root => tree2list(root, '/')
+}; 
