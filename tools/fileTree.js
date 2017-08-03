@@ -24,7 +24,6 @@ function tree2list(root, pathAcc){
 	var list = Object.keys(root); 
 
 	return list.map(sub => {
-
 		if (typeof root[sub] === 'object') {
 			var nextPath = pathAcc + sub + '/'; 
 			return `

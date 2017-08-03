@@ -7,6 +7,8 @@ var tree = require('./fileTree');
 
 
 var outputTree = tree.init(config.output); 
+var fileFilter = /(css|js|images)/g; 
+var readdirSync = r => fs.readdirSync(r).filter(e => !fileFilter.test(e)); 
 
 // 删掉多余的。 
 delete outputTree.css; 
@@ -16,7 +18,8 @@ delete outputTree.images;
 var htmlList = tree.toList(outputTree); 
 
 var goThroughDisk = root => {
-	var list = fs.readdirSync(root);
+	// var list = fs.readdirSync(root);
+	var list = readdirSync(root); 
 
 	return list.reduce((acc, file) => {
 		var fileLocation = path.join(root, file); 
@@ -26,17 +29,18 @@ var goThroughDisk = root => {
 		); 
 
 		if (fileStat.isDirectory()){
+			// 是文件夹 继续递归 
 			return acc.concat(
 				goThroughDisk(fileLocation)
 			)
 		} else {
+			// 普通文件 处理之 
 			nodeProcess({
 				list: list.filter(e => e !== file), 
 				index: fileLocation
 			})
 			return acc.concat(fileLocation); 
 		}
-
 	}, []); 
 }
 
@@ -50,7 +54,10 @@ function nodeProcess(node){
 	); 
 	
 	// 文件所在目录的名字 
-	var name = node.index.split(path.sep).slice(-2, -1); 
+	// 如果是根目录则命名为 config.docName 
+	var [ name ] = node.index.replace(config.output, '').split(path.sep).slice(-2, -1); 
+	if (name === '') name = config.docName; 
+
 
 	// 模版渲染
 	var indexHTML = renders.index({
