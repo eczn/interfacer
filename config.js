@@ -1,4 +1,3 @@
-// config.js
 var path = require('path'); 
 
 module.exports = {
@@ -6,5 +5,6 @@ module.exports = {
 	docRoot: path.join(__dirname, './docs'), 
 	output: path.join(__dirname, './output'),
 	PORT: 3322, 
-	docName: 'Interfacer 使用手册'
+	mainTitle: 'Interfacer 使用手册', 
+	welcome: '欢迎来到'
 }

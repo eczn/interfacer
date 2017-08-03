@@ -27,7 +27,7 @@ function interfacer(){
 		));
 	});
 
-	// 渲染 index
+	// 渲染 entryIndex
 	var entryIndex = renders.entry({
 		mainTitle: config.mainTitle || 'Interfacer 文档', 
 		welcome: config.welcome || '欢迎来到 Interfacer', 
@@ -37,20 +37,30 @@ function interfacer(){
 	fs.writeFileSync(path.join(
 		config.output, 'index.html'
 	), entryIndex)
-
 }
 
-interfacerInit();
-interfacer(); 
 
-// Start Server 
-server(); 
-
-
-// Add 
-docWatch.add(function(){
+module.exports = function(_){
+	// if (_.generate){
+	// 	interfacerInit();
+	// 	interfacer(); 
+	// } 
 	interfacerInit(); 
 	interfacer(); 
-}); 
-docWatch.start(); 
+	// if (_.server){
+	// 	interfacerInit();
+	// 	interfacer(); 
+		// Start Server 
+	server(); 
+	// }
+
+	// if (_.livereload){
+		// Add 
+	docWatch.add(function(){
+		interfacerInit(); 
+		interfacer(); 
+	}); 
+	docWatch.start(); 
+	// }
+}
 
