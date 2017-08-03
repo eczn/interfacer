@@ -1,6 +1,6 @@
 {
   "name": "interfacer",
-  "version": "0.0.51",
+  "version": "0.0.6",
   "bin": {
     "ifer": "index.js"
   },
