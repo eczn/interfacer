@@ -219,7 +219,7 @@
 	padding-right: .5em; 
 }
 
-.md hr {
+.md hr, .md-hr {
 	height: 0;
 	border: none;
 	border-bottom: 1px solid #EEE;
@@ -231,11 +231,11 @@
 	box-shadow: 0 15px 24px -14px rgba(0,0,0,.5);
 }
 
-.md hr[init] {
+.md hr[init], .md-hr[init] {
 	margin: 0; 
 }
 
-.md hr[forbtns] {
+.md hr[forbtns], .md-hr[forbtns] {
 	margin: 1em 0; 
 	min-width: 280px; 
 }

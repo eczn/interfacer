@@ -7,12 +7,14 @@
 	<script src="/js/flexible.min.js"></script>
 	<script src="/js/zepto.min.js"></script>
 	<script src="/js/tplser.min.js"></script>
+	<script src="/js/jump.min.js"></script>
 	<link rel="stylesheet" href="/css/main.css">
 	<link rel="stylesheet" href="/css/mark-vally.css">
 	<link rel="stylesheet" href="/css/tree.css">
 </head>
-<body>
-	<input type="checkbox" class="show-file-tree" />
+<body side-open="√">
+	<div class="top"></div>
+	<input type="checkbox" class="show-file-tree" checked />
 	<div class="file-container">
 		<ul class="file-tree file-tree-root">
 			<a href="/" class="header root">/</a>
@@ -21,16 +23,19 @@
 	</div>
 
 	<div class="container">
-		<ul class="list">
+		<div class="welcome md">
+			{{ md }}
+		</div>
+		
+		<hr class="md-hr" />
+
+		<ul class="sub-list">
 			{{ get (item, idx) >>>> list }}
 			<li>
 				<a href="{{ item }}">{{ item }}</a>
 			</li>
 			{{ teg }}
 		</ul>
-		<div class="welcome md">
-			{{ md }}
-		</div>
 	</div>
 
 	<script src="/js/main.js"></script>

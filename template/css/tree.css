@@ -10,7 +10,7 @@
 	font-size: 0.35rem; 
 	text-decoration: none; 
 	margin: .2em 0; 
-	transition: all .2s; 
+	transition: opacity .2s; 
 }
 
 .file-tree .header:hover {
@@ -21,6 +21,10 @@ body[side-open="√"] {
 	padding-left: 320px; 
 }
 
+.top[side-open="√"] {
+	
+}
+
 .file-container {
 	position: fixed;
 	left: -320px; 
@@ -28,7 +32,7 @@ body[side-open="√"] {
 	height: 100%; 
 	width: 320px; 
 	background-color: #DDD;
-	transition: all .3s;  
+	transition: left .3s;  
 }
 
 .show-file-tree {
