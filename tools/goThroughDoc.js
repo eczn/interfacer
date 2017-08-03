@@ -5,19 +5,26 @@ var md = require('./md');
 var renders = require('./tpl'); 
 var tree = require('./fileTree'); 
 
-
-var outputTree = tree.init(config.output); 
 var fileFilter = /(css|js|images)/g; 
 var readdirSync = r => fs.readdirSync(r).filter(e => !fileFilter.test(e)); 
 
-// 删掉多余的。 
-delete outputTree.css; 
-delete outputTree.js; 
-delete outputTree.images; 
+var treeCache = {}; 
+function listGenerator(doc, base){
+	// 缓存命中 
+	if (treeCache[doc]) return treeCache[doc]; 
+	
+	// delete outputTree.css; 
+	// delete outputTree.js; 
+	// delete outputTree.images; 
 
-var htmlList = tree.toList(outputTree); 
+	var outputTree = tree.init(doc); 
+	var res = tree.toList(outputTree, '/' + base + '/'); 
+	treeCache[doc] = res; 
 
-var goThroughDisk = root => {
+	return res; 
+}
+
+var goThroughDoc = root => {
 	// var list = fs.readdirSync(root);
 	var list = readdirSync(root); 
 
@@ -31,7 +38,7 @@ var goThroughDisk = root => {
 		if (fileStat.isDirectory()){
 			// 是文件夹 继续递归 
 			return acc.concat(
-				goThroughDisk(fileLocation)
+				goThroughDoc(fileLocation)
 			)
 		} else {
 			// 普通文件 处理之 
@@ -55,16 +62,21 @@ function nodeProcess(node){
 	
 	// 文件所在目录的名字 
 	// 如果是根目录则命名为 config.docName 
-	var [ name ] = node.index.replace(config.output, '').split(path.sep).slice(-2, -1); 
+	var routes = node.index.replace(config.output, '').split(path.sep); 
+	var [ name ] = routes.slice(-2, -1); 
+	var [ __, base ] = routes; 
 	if (name === '') name = config.docName; 
 
-
+	// 拼接回绝对路径 
+	// base = path.join(config.output, base); 
+	
 	// 模版渲染
 	var indexHTML = renders.index({
 		name: name, 
+		base: base, 
 		list: node.list, 
 		md: mdHTML, 
-		htmlList: htmlList
+		htmlList: listGenerator(path.join(config.output, base), base)
 	}); 
 
 	// 把文件名改成 .html 后缀 并写入到与 .md 文件一样的目录中
@@ -72,4 +84,4 @@ function nodeProcess(node){
 	fs.writeFileSync(htmlLocation, indexHTML); 
 }
 
-module.exports = goThroughDisk; 
+module.exports = goThroughDoc;

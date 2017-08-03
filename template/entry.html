@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ mainTitle }}</title>
+	<script src="/js/fastclick.min.js"></script>
+	<script src="/js/flexible.min.js"></script>
+	<script src="/js/zepto.min.js"></script>
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/mark-vally.css">
+	<link rel="stylesheet" href="/css/entry.css">
+</head>
+<body>
+	<div class="container">
+		<div class="welcome md">
+			<h1>{{ welcome }}</h1>
+		</div>
+		
+		<hr class="md-hr" />
+
+		<ul class="docs">
+			{{ get (item, idx) >>>> list }}
+			<li class="doc">
+				<a href="{{ item }}">{{ item }}</a>
+			</li>
+			{{ teg }}
+		</ul>
+	</div>
+
+	<script src="/js/main.js"></script>
+
+	{{ inter.llScript }}
+</body>
+</html>

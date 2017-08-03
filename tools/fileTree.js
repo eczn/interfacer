@@ -1,7 +1,16 @@
 // fileTree.js
 var fs = require('fs'); 
 var path = require('path'); 
+var tpl = require('./tpl'); 
 // var config = require('../config'); 
+
+
+var nodeName = p => {
+	var routes = p.split('/');
+
+	return routes.slice(-2, -1).join(''); 
+}
+
 
 function treeInit(root){
 	var rootStat = fs.statSync(root); 
@@ -28,7 +37,7 @@ function tree2list(root, pathAcc){
 			var nextPath = pathAcc + sub + '/'; 
 			return `
 				<ul class="file-tree" where="${sub}">
-					<a class="header" href="${ nextPath }">${ nextPath }</a>
+					<a class="header" href="${ nextPath }">${ nodeName(nextPath) }</a>
 					${tree2list(root[sub], nextPath)}
 				</ul>
 			`; 
@@ -40,5 +49,5 @@ function tree2list(root, pathAcc){
 
 module.exports = {
 	init: treeInit, 
-	toList: root => tree2list(root, '/')
+	toList: (root, pathAcc) => tree2list(root, pathAcc)
 }; 

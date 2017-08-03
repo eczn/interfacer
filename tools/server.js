@@ -32,7 +32,7 @@ app.use(function(err, req, res, next) {
 	// render the error page
 	res.status(err.status || 500);
 	res.json({
-		code: 500, 
+		code: err.status, 
 		msg: 'error'
 	});
 });
