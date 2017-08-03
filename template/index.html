@@ -17,7 +17,7 @@
 	<input type="checkbox" class="show-file-tree" checked />
 	<div class="file-container">
 		<ul class="file-tree file-tree-root">
-			<a href="/" class="header root">/</a>
+			<a href="/{{ base }}" class="header root">/{{ base }}</a>
 			{{ htmlList }}
 		</ul>
 	</div>
@@ -39,5 +39,7 @@
 	</div>
 
 	<script src="/js/main.js"></script>
+
+	{{ inter.llScript }}
 </body>
 </html>
