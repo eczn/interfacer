@@ -1,6 +1,6 @@
 {
   "name": "interfacer",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "API Document Automately Generating 接口文档自动生成工具.",
   "main": "index.js",
   "directories": {
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/eczn/interfacer#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chokidar": "^1.7.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "highlight.js": "^9.12.0",
@@ -34,8 +35,8 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-table-of-contents": "^0.3.2",
     "markdown-it-toc-and-anchor": "^4.1.2",
-    "require-folder-tree": "^1.4.5",
+    "nodejs-websocket": "^1.7.1",
     "shelljs": "^0.7.8",
-    "tplser": "0.0.81"
+    "tplser": "0.0.9"
   }
 }
