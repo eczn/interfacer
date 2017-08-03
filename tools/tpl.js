@@ -4,7 +4,9 @@ var path = require('path');
 var renders = {}; 
 var fs = require('fs'); 
 
-var llScript = fs.readFileSync('./ll.js').toString(); 
+var llScript = fs.readFileSync(
+	path.join(__dirname, './ll.js')
+).toString(); 
 
 module.exports = renders; 
 

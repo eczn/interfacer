@@ -1,6 +1,6 @@
 {
   "name": "interfacer",
-  "version": "0.0.5",
+  "version": "0.0.51",
   "description": "API Document Automately Generating 接口文档自动生成工具.",
   "main": "index.js",
   "directories": {
