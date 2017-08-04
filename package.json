@@ -1,6 +1,6 @@
 {
   "name": "ifer",
-  "version": "0.0.7",
+  "version": "0.0.71",
   "bin": {
     "ifer": "index.js"
   },
