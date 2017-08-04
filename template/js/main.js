@@ -9,12 +9,12 @@ function scrollHandle(){
 function getRate(){
 	var $b = $('body'); 
 
-	var cha = parseInt($b.css('margin-top')) + parseInt($b.css('margin-bottom'));
+	
 
-	var total = $b.height() + cha - window.innerHeight; 
+	var total = $b.height() - window.innerHeight; 
 	var now = $b.scrollTop(); 
-	// console.log('now, total', now, total); 
-	// console.log('rate:', now / total); 
+	console.log('cha, now, total', now, total); 
+	console.log('rate:', now / total); 
 	if (total <= 0){
 		return 1; 
 	} else {
@@ -34,4 +34,12 @@ window.onload = function(){
 
 	$(window).scroll(scrollHandle); 
 	scrollHandle(); 
+
+	var title = $('title').html()
+	var $at = $(`.file-tree [where="${title}"]`)
+	$at.attr('at', '√'); 
+
+	setTimeout(function(){
+		$('body').removeClass('display-hidden')
+	}, 333);
 }

@@ -1,20 +1,71 @@
 /*tree.css*/
 .file-tree {
 	position: relative;
-	margin-left: 1.8em; 
+	padding-left: 2em; 
+	transition: all .3s; 
 }
+
+.file-tree[at] > .header {
+	/*border-radius: 0 0 10px 0;*/
+	font-weight: bold; 
+}
+
+.file-tree[at] > .header::before {
+	content: "#"; 
+	position: absolute;
+	left: 0; 
+	bottom: 45%; 
+	/*height: 100%; */
+	line-height: 0; 
+}
+
+.file-tree[at] {
+	/*transform: translateX(1em);*/
+	transform: rotate(90deg);
+	transform-origin: 35% 700%;
+}
+
+.file-tree[at] .single-word {
+	display: inline-block;
+}
+
+.file-tree[at] .single-word {
+	transform: rotate(-45deg);
+	padding: 0 .3em; 
+}
+
+/*.file-tree[where]::before {
+	content: ""; 
+	position: absolute;
+	left: -10em; 
+	top: 50%;
+	
+	width: 11em; 
+	height: 0px; 
+	border: 1px dotted #BBB; 
+}*/
 
 .file-tree .header {
 	color: rgb(68, 68, 68);
 	display: block;
 	font-size: 0.35rem; 
 	text-decoration: none; 
-	margin: .2em 0; 
-	transition: opacity .2s; 
+	margin: .6em 0; 
+	transition: all .2s; 
+	padding: .2em 0; 
+	border-bottom: 1px solid #BBB; 
+
+}
+
+.file-tree .root {
+	font-size: .4rem; 
+
+	
+	margin-bottom: .8em; 
 }
 
 .file-tree .header:hover {
-	opacity: .7; 
+
 }
 
 body[side-open="√"] {
@@ -36,7 +87,7 @@ body[side-open="√"] {
 }
 
 .show-file-tree {
-	position: absolute;
+	position: fixed;
 	bottom: 0; 
 	left: 0px;
 	width: 40px; 
@@ -46,6 +97,19 @@ body[side-open="√"] {
 
 .show-file-tree:checked ~ .file-container {
 	left: 0px; 
+}
+
+.show-file-tree:checked ~ .file-container .file-tree[where] {
+	transform: rotate(0deg);
+}
+
+.show-file-tree:checked ~ .file-container .file-tree[at] .single-word {
+	transform: rotate(0deg);
+	padding: 0 0em; 
+}
+
+.file-tree[at]  {
+	
 }
 
 .show-file-tree:checked {

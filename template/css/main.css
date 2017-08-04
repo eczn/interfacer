@@ -1,7 +1,16 @@
 /*main.css*/
 body {
 	font-family: "Consolas", "Menlo"; 
-	transition: padding .3s; 
+	transition: all .3s; 
+	color: #555; 
+}
+
+h1, h2 {
+    font-weight: 600;
+}
+
+.display-hidden {
+	opacity: 0; 
 }
 
 .container {
@@ -10,10 +19,38 @@ body {
 }
 
 .top {
-	position: absolute;
+	position: fixed;
 	top: 0; 
 	left: 0; 
 	width: 5%; 
-	height: 6px;
+	height: 5px;
+	z-index: 99; 
 	background-color: #DDD; 
 }
+
+
+
+::selection {
+    color: #FFF;
+    background-color: #C6BCBB;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 16px;
+    background-color: #AAA;
+}
+
+/* 轨道 */  
+::-webkit-scrollbar-track {
+    /*box-shadow: 0 0 20px 0 rgba(0,0,0,.5);*/
+    background-color: #E0E0E0;
+}
+
+/* 定义滑块 */
+::-webkit-scrollbar-thumb {
+    /*box-shadow: 0 0 6px 0 rgba(0,0,0,.5);*/
+    background-color: #AAA;
+}  
+

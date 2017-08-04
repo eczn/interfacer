@@ -8,7 +8,15 @@ var tpl = require('./tpl');
 var nodeName = p => {
 	var routes = p.split('/');
 
-	return routes.slice(-2, -1).join(''); 
+	var name = routes.slice(-2, -1).join(''); 
+
+	return name.split('').map(e => {
+		if (e === ' '){
+			return `<span class="single-word" style="display: inline;">${e}</span>`
+		} else {
+			return `<span class="single-word">${e}</span>`
+		}
+	}).join(''); 
 }
 
 

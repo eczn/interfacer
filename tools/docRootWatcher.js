@@ -1,6 +1,7 @@
 // watcher.js
 var chokidar = require('chokidar');
 var config = require('../config'); 
+var path = require('path'); 
 var reloadBroadcast = require('./reloadBroadcast');
 var watcher; 
 
@@ -11,7 +12,7 @@ var todos = [function(){
 module.exports = {
 	start: () => {
 		var timer = null; 
-		watcher = chokidar.watch([config.docRoot], {
+		watcher = chokidar.watch([config.docRoot, path.join(__dirname, '../template/')], {
 			ignored: /[\/\\]\./,
 			persistent: true,
 			ignoreInitial: true

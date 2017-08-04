@@ -33,7 +33,7 @@ module.exports = {
     // Absolute Location 
     docRoot: 'PATH/TO/YOUR/DOCROOT',
     // Absolute Location 
-    output: 'PATH/TO/OUTPUT,
+    output: 'PATH/TO/OUTPUT',
     PORT: 3322, 
     // 主页的显示文字 
     welcome: '欢迎来到',
@@ -41,8 +41,6 @@ module.exports = {
     mainTitle: 'Interfacer 使用手册'
 }
 ```
-
-
 
 # 使用 
 

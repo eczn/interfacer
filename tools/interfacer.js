@@ -12,8 +12,8 @@ function interfacerInit(){
 	shell.rm('-r', config.output);
 	shell.cp('-R', config.docRoot, config.output);
 
-	shell.cp('-R', path.join(config.BASE, 'template/js/'), config.output);
-	shell.cp('-R', path.join(config.BASE, 'template/css/'), config.output);
+	shell.cp('-R', path.join(__dirname, '../template/js/'), config.output);
+	shell.cp('-R', path.join(__dirname, '../template/css/'), config.output);
 }
 
 
@@ -56,10 +56,9 @@ module.exports = function(_){
 
 	// if (_.livereload){
 		// Add 
-	docWatch.add(function(){
-		interfacerInit(); 
-		interfacer(); 
-	}); 
+	docWatch.add(interfacerInit); 
+	docWatch.add(interfacer); 
+
 	docWatch.start(); 
 	// }
 }
